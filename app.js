@@ -7,6 +7,7 @@ app.use(bodyParser.urlencoded({urlencoded: true}))
 
 const request = require("request")
 const https = require("https")
+const { response } = require("express")
 
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/signup.html")
@@ -37,10 +38,15 @@ app.post("/", function (req, res) {
 
     const options = {
         method: "POST",
-        auth: "rgnh55:1c90d3fa18cc936eaf54ee852dd6a34d-us17"
+        auth: "rgnh55:z1c90d3fa18cc936eaf54ee852dd6a34d-us17"
     }
 
     const request = https.request(url, options, function(response) {
+        if (response.statusCode === 200) {
+            res.sendFile(__dirname + "/success.html")
+        } else {
+            res.sendFile(__dirname + "/failure.html")
+        }
         response.on("data", function(data) {
             console.log(JSON.parse(data))
         })
@@ -50,6 +56,10 @@ app.post("/", function (req, res) {
     request.end()
 
     // res.send("Successfully registered on newsletter")
+})
+
+app.post("/failure", function(req, res) {
+    res.redirect("/")
 })
 
 app.listen(80, function () {
