@@ -38,7 +38,7 @@ app.post("/", function (req, res) {
 
     const options = {
         method: "POST",
-        auth: "rgnh55:z1c90d3fa18cc936eaf54ee852dd6a34d-us17"
+        auth: "rgnh55:1c90d3fa18cc936eaf54ee852dd6a34d-us17"
     }
 
     const request = https.request(url, options, function(response) {
@@ -63,7 +63,7 @@ app.post("/failure", function(req, res) {
 })
 
 app.listen(process.env.PORT || 3000, function () {
-    console.log("Server is running on port 80.");
+    console.log("Server is running on port 3000.");
 })
 
 // 1c90d3fa18cc936eaf54ee852dd6a34d-us17 API Key
