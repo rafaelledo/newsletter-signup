@@ -5,9 +5,7 @@ app.use(express.static("public"))
 const bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({urlencoded: true}))
 
-const request = require("request")
 const https = require("https")
-const { response } = require("express")
 
 app.get("/", function (req, res) {
     res.sendFile(__dirname + "/signup.html")
@@ -38,7 +36,7 @@ app.post("/", function (req, res) {
 
     const options = {
         method: "POST",
-        auth: "rgnh55:1c90d3fa18cc936eaf54ee852dd6a34d-us17"
+        auth: "rgnh55:1c90d3fa18cc936eaf54ee852dd6a34d-us17" // default disabled
     }
 
     const request = https.request(url, options, function(response) {
@@ -55,7 +53,6 @@ app.post("/", function (req, res) {
     request.write(jsonData)
     request.end()
 
-    // res.send("Successfully registered on newsletter")
 })
 
 app.post("/failure", function(req, res) {
@@ -65,7 +62,3 @@ app.post("/failure", function(req, res) {
 app.listen(process.env.PORT || 3000, function () {
     console.log("Server is running on port 3000.");
 })
-
-// 1c90d3fa18cc936eaf54ee852dd6a34d-us17 API Key
-
-// 07a2a61c85 Audiencie ID
